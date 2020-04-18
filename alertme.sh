@@ -1,39 +1,30 @@
-#!/bin/sh
-#download site
-wget -q https://sites.google.com/a/ict.gnu.ac.in/sitenews/home/2020---even-sem 
-tail -n +67 2020---even-sem > first.html #removing var webspace
+#!/bin/bash
+# Author Abhay Ruparel
+function1()
+{
 
-#deleting site source
-chmod a+w 2020---even-sem
-rm 2020---even-sem
+echo #################
+echo Cleaning all html files!
+rm *.html
+echo #################
+	#check if we need to generate.
+		shaOne=$(cat shaKaFile)
+		
+		echo 1. Downloading the site as of $(date)
+		wget -q https://sites.google.com/a/ict.gnu.ac.in/sitenews/home/2020---even-sem
+		tail -n +67 2020---even-sem > first.html # getting rid of a dynamic stuff from website source to avoid ambiguity of sha gen
+		newSha=$(shasum first.html)
+		if [ "$newSha" != "$shaOne" ]
+		then
+			echo 2. Changes Found
+			python3 mail.py
+			echo 3. Mail command of python run complete.
+			echo 4. Now let me change the shaKaFile with newSha variable so next time when the file runs it has new sha.
+			shasum first.html > shaKaFile
+			echo 5. Updating shaKaFile with $newSha done.
+		else
+			echo 2. Nothing changed exiting script. I will now run after 15m.
+		fi
+}
 
-#getting sha
-oldsha=$(shasum first.html)
-mv first.html old.html
-
-
-
-while true
-do
-
-# downloading new source
-wget -q https://sites.google.com/a/ict.gnu.ac.in/sitenews/home/2020---even-sem
-tail -n +67 2020---even-sem > first.html
-
-#deleting site source
-chmod a+w 2020---even-sem
-rm 2020---even-sem
-
-newsha=$(shasum first.html)
-mv first.html new.html
-
-#lets compare it now
-if [ "$oldsha" = "$newsha" ]
-        then
-                echo "no changes found" 
-        else
-                echo "executing the mail program as changes found"
-                python3 mail.py
-                exit 0
-fi
-done
+function1
