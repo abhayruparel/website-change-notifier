@@ -5,7 +5,7 @@ function1()
 
 echo #################
 echo Cleaning all html files!
-rm *.html
+rm *.html 2020---even-sem
 echo #################
 	#check if we need to generate.
 		shaOne=$(cat shaKaFile)
