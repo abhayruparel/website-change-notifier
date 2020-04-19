@@ -46,8 +46,10 @@ echo "#################"
 			echo "5. Updating shaKaFile with $newSha done."
 			if [ -z "$SCRIPT_DIR/first.html.old" ]; then
 				echo "Saving the first.html as first.html.old to store diff."
+				mv $SCRIPT_DIR/first.html $SCRIPT_DIR/first.html.old
 			else
 				echo -e "$(diff first.html first.html.old)" >> DIFF.txt
+				echo -e "#### \n" >> DIFF.txt
 				rm first.html.old first.html
 			fi
 		else
