@@ -26,7 +26,7 @@ echo "#################"
 		
 		echo "1. Downloading the site as of $TODAY"
 		wget -q -O $SCRIPT_DIR/2020---even-sem https://sites.google.com/a/ict.gnu.ac.in/sitenews/home/2020---even-sem
-		tail -n +697 $SCRIPT_DIR/2020---even-sem > $SCRIPT_DIR/first.html # getting rid of a dynamic stuff from website source to avoid ambiguity of sha gen
+		tail -n +67 $SCRIPT_DIR/2020---even-sem > $SCRIPT_DIR/first.html # getting rid of a dynamic stuff from website source to avoid ambiguity of sha gen
 		newSha=$(shasum $SCRIPT_DIR/first.html | awk '{ print $1 }')
 		echo "comparing $newSha with $shaOne"
 		if [ "$newSha" != "$shaOne" ]
@@ -34,7 +34,7 @@ echo "#################"
 			echo "2. Changes Found"
 			echo "Storing newSha in newSha.log"
 			if [ -z "$SCRIPT_DIR/newSha.log" ] ; then
-				touch newSha.log
+				touch $SCRIPT_DIR/newSha.log
 				echo -e "$newSha\n" >> $SCRIPT_DIR/newSha.log
 			else
 				echo -e "$newSha\n" >> $SCRIPT_DIR/newSha.log
