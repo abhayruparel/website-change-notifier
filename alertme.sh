@@ -32,26 +32,23 @@ echo "#################"
 		if [ "$newSha" != "$shaOne" ]
 		then
 			echo "2. Changes Found"
-			echo "Storing newSha in newSha.log"
-			if [ -z "$SCRIPT_DIR/newSha.log" ] ; then
-				touch $SCRIPT_DIR/newSha.log
-				echo -e "$newSha\n" >> $SCRIPT_DIR/newSha.log
-			else
-				echo -e "$newSha\n" >> $SCRIPT_DIR/newSha.log
-			fi
-			python3 $SCRIPT_DIR/mail.py
-			echo "3. Mail command of python run complete."
+			echo "3. Storing newSha in newSha.log"
+			echo "$newSha\n" >> $SCRIPT_DIR/newSha.log
 			echo "4. Now let me change the shaKaFile with newSha variable so next time when the file runs it has new sha."
 			echo $newSha > $SCRIPT_DIR/shaKaFile
 			echo "5. Updating shaKaFile with $newSha done."
-			if [ -z "$SCRIPT_DIR/first.html.old" ]; then
-				echo "Saving the first.html as first.html.old to store diff."
-				mv $SCRIPT_DIR/first.html $SCRIPT_DIR/first.html.old
-			else
-				echo -e "$(diff first.html first.html.old)" >> $SCRIPT_DIR/DIFF.txt
-				echo -e "#### \n" >> $SCRIPT_DIR/DIFF.txt
+			
+			if [ -f "$SCRIPT_DIR/first.html.old" ]; then
+			echo "6. first.html.old exists storing diff"
+				echo "$(diff $SCRIPT_DIR/first.html $SCRIPT_DIR/first.html.old)" >> $SCRIPT_DIR/DIFF.txt
+				echo "#### \n" >> $SCRIPT_DIR/DIFF.txt
 				rm $SCRIPT_DIR/first.html.old $SCRIPT_DIR/first.html
+			else
+				echo "6. Saving the first.html as first.html.old to store diff."
+				mv $SCRIPT_DIR/first.html $SCRIPT_DIR/first.html.old
 			fi
+			python3 $SCRIPT_DIR/mail.py
+			echo "7. Mail command of python run complete."
 		else
 			echo "2. Nothing changed exiting script. I will now run after 15m."
 		fi
