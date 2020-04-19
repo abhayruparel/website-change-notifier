@@ -35,9 +35,9 @@ echo "#################"
 			echo "Storing newSha in newSha.log"
 			if [ -z "$SCRIPT_DIR/newSha.log" ] ; then
 				touch newSha.log
-				echo -e "$newSha\n" >> newSha.log
+				echo -e "$newSha\n" >> $SCRIPT_DIR/newSha.log
 			else
-				echo -e "$newSha\n" >> newSha.log
+				echo -e "$newSha\n" >> $SCRIPT_DIR/newSha.log
 			fi
 			python3 $SCRIPT_DIR/mail.py
 			echo "3. Mail command of python run complete."
@@ -48,9 +48,9 @@ echo "#################"
 				echo "Saving the first.html as first.html.old to store diff."
 				mv $SCRIPT_DIR/first.html $SCRIPT_DIR/first.html.old
 			else
-				echo -e "$(diff first.html first.html.old)" >> DIFF.txt
-				echo -e "#### \n" >> DIFF.txt
-				rm first.html.old first.html
+				echo -e "$(diff first.html first.html.old)" >> $SCRIPT_DIR/DIFF.txt
+				echo -e "#### \n" >> $SCRIPT_DIR/DIFF.txt
+				rm $SCRIPT_DIR/first.html.old $SCRIPT_DIR/first.html
 			fi
 		else
 			echo "2. Nothing changed exiting script. I will now run after 15m."
