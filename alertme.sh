@@ -42,6 +42,11 @@ echo "#################"
 			echo "4. Now let me change the shaKaFile with newSha variable so next time when the file runs it has new sha."
 			echo $newSha > $SCRIPT_DIR/shaKaFile
 			echo "5. Updating shaKaFile with $newSha done."
+			if [ -z "$SCRIPT_DIR/first.html.old" ]; then
+				echo "Saving the first.html as first.html.old to store diff."
+			else
+				echo -e "$(diff first.html first.html.old)" >> DIFF.txt
+			fi
 		else
 			echo "2. Nothing changed exiting script. I will now run after 15m."
 		fi
