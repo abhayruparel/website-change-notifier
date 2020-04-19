@@ -1,5 +1,7 @@
 #!/bin/bash
 # Author Abhay Ruparel
+TODAY=$(TZ=":Asia/Kolkata" date)
+
 function1()
 {
 # Specify colors utilized in the terminal
@@ -22,7 +24,7 @@ echo "#################"
 	#check if we need to generate.
 		shaOne=$(cat $SCRIPT_DIR/shaKaFile)
 		
-		echo "1. Downloading the site as of $(date)"
+		echo "1. Downloading the site as of $TODAY"
 		wget -q -O $SCRIPT_DIR/2020---even-sem https://sites.google.com/a/ict.gnu.ac.in/sitenews/home/2020---even-sem
 		tail -n +697 $SCRIPT_DIR/2020---even-sem > $SCRIPT_DIR/first.html # getting rid of a dynamic stuff from website source to avoid ambiguity of sha gen
 		newSha=$(shasum $SCRIPT_DIR/first.html | awk '{ print $1 }')
