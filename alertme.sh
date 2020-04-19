@@ -48,6 +48,7 @@ echo "#################"
 				echo "Saving the first.html as first.html.old to store diff."
 			else
 				echo -e "$(diff first.html first.html.old)" >> DIFF.txt
+				rm first.html.old first.html
 			fi
 		else
 			echo "2. Nothing changed exiting script. I will now run after 15m."
