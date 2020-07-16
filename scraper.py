@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-page_url = 'https://sites.google.com/a/ict.gnu.ac.in/sitenews/home/2020---even-sem/all-news---even-sem-2020'
+page_url = 'https://sites.google.com/a/ict.gnu.ac.in/sitenews/home/2020---odd-sem/all-news---odd-sem-2020'
 page = requests.get(page_url)
 
 page_raw = BeautifulSoup(page.content, 'html.parser')
