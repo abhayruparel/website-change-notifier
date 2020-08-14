@@ -8,11 +8,11 @@ from email.message import EmailMessage
 from email.mime.multipart import MIMEMultipart
 
 msg = MIMEMultipart()
-user = "" #Enter sender's email address
-passwd = "" #Enter sender's password
+user = os.environ.get('id') #Enter sender's email address
+passwd = os.environ.get('pass')
 msg['Subject'] = "Alert! Site has been modified"
 msg['From'] = user
-msg['To'] = "" #Enter receiver's email address
+msg['To'] = "abhayruparel2000@gmail.com" #Enter receiver's email address
 msgContent = "Hi there,\n\nPlease find attached."
 ctype, encoding = mimetypes.guess_type("DIFF.txt")
 if ctype is None or encoding is not None:
