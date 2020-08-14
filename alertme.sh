@@ -14,6 +14,7 @@ then
 	rm first second
 	echo "Running mail script!"
 	python3 mail.py
+	rm DIFF.txt
 else
 	echo "No change detected"
 	# as there are no changes lets just nuke second.
