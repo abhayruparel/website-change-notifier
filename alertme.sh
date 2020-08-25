@@ -1,4 +1,9 @@
 #!/bin/bash
+
+#paratmeters
+TODAY=$(TZ=":Asia/Kolkata" date)
+IST_LOCAL=$(TZ=":Asia/Kolkata" date +%A_%F)
+
 SCRAPE()
 {
 python3 scraper.py > $1
@@ -30,6 +35,14 @@ else
 	SCRAPE first
 	SCRAPE second
 fi
+ # log those first and second html.
+ echo "==============================================================================" >> log-$IST_LOCAL.log
+ echo $TODAY >> log-$IST_LOCAL.log
+ echo -e "First scrape file:\n" >> log-$IST_LOCAL.log
+ cat first >> log-$IST_LOCAL.log
+ echo -e "\nSecond scrape\n" >> log-$IST_LOCAL.log
+ cat second >> log-$IST_LOCAL.log
+ echo "==============================================================================" >> log-$IST_LOCAL.log
 COMPARE
 }
 main
