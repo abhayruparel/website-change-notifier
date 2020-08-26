@@ -3,8 +3,9 @@
 #paratmeters
 TODAY=$(TZ=":Asia/Kolkata" date)
 IST_LOCAL=$(TZ=":Asia/Kolkata" date +%A_%F)
-TG_BOT_API_KEY=
-TG_CHAT_ID=
+#TG_* parameters are set via /etc/environment variable
+TG_BOT_API_KEY=$TG_BOT_API_KEY 
+TG_CHAT_ID=$TG_CHAT_ID 
 
 SCRAPE()
 {
