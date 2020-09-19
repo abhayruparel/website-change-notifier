@@ -18,7 +18,7 @@ COMPARE()
 	if [ "$shaFirst" != "$shaSecond" ]
 	then
 		echo "change detected."
-		diff first second > DIFF.txt
+		diff second first > DIFF.txt
 		rm first second
 		echo "Running mail script!"
 		python3 mail.py
