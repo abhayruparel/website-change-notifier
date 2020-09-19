@@ -13,20 +13,20 @@ SCRAPE()
 }
 COMPARE()
 {
-	shaFirst=$(shasum first | awk '{ print $1 }')
-	shaSecond=$(shasum second | awk '{ print $1 }')
-	if [ "$shaFirst" != "$shaSecond" ]
+	shafirstScrape=$(shasum firstScrape | awk '{ print $1 }')
+	shasecondScrape=$(shasum secondScrape | awk '{ print $1 }')
+	if [ "$shafirstScrape" != "$shasecondScrape" ]
 	then
 		echo "change detected."
-		diff second first > DIFF.txt
-		rm first second
+		diff secondScrape firstScrape > DIFF.txt
+		rm firstScrape secondScrape
 		echo "Running mail script!"
 		python3 mail.py
 		rm DIFF.txt
 	else
 		echo "No change detected"
-		# as there are no changes lets just nuke second.
-		rm second
+		# as there are no changes lets just nuke secondScrape.
+		rm secondScrape
 	fi
 }
 
@@ -38,20 +38,20 @@ main()
 	then
 		mkdir logs
 	fi
-	if [ -f first ]
+	if [ -f firstScrape ]
 	then
-		SCRAPE second
+		SCRAPE secondScrape
 	else
-		SCRAPE first
-		SCRAPE second
+		SCRAPE firstScrape
+		SCRAPE secondScrape
 	fi
-	 # log those first and second html.
+	 # log those firstScrape and secondScrape html.
 	 echo "================================================================" >> log-$IST_LOCAL.log
 	 echo $TODAY >> logs/log-$IST_LOCAL.log
-	 echo -e "First scrape file:\n" >> logs/log-$IST_LOCAL.log
-	 cat first >> logs/log-$IST_LOCAL.log
-	 echo -e "\nSecond scrape\n" >> logs/log-$IST_LOCAL.log
-	 cat second >> logs/log-$IST_LOCAL.log
+	 echo -e "firstScrape scrape file:\n" >> logs/log-$IST_LOCAL.log
+	 cat firstScrape >> logs/log-$IST_LOCAL.log
+	 echo -e "\nsecondScrape scrape\n" >> logs/log-$IST_LOCAL.log
+	 cat secondScrape >> logs/log-$IST_LOCAL.log
 	 echo "================================================================" >> log-$IST_LOCAL.log
 
 	COMPARE
