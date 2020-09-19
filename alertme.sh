@@ -34,6 +34,10 @@ COMPARE()
 
 main()
 {
+	if [ ! -d logs ]
+	then
+		mkdir logs
+	fi
 	if [ -f first ]
 	then
 		SCRAPE second
@@ -43,11 +47,11 @@ main()
 	fi
 	 # log those first and second html.
 	 echo "================================================================" >> log-$IST_LOCAL.log
-	 echo $TODAY >> log-$IST_LOCAL.log
-	 echo -e "First scrape file:\n" >> log-$IST_LOCAL.log
-	 cat first >> log-$IST_LOCAL.log
-	 echo -e "\nSecond scrape\n" >> log-$IST_LOCAL.log
-	 cat second >> log-$IST_LOCAL.log
+	 echo $TODAY >> logs/log-$IST_LOCAL.log
+	 echo -e "First scrape file:\n" >> logs/log-$IST_LOCAL.log
+	 cat first >> logs/log-$IST_LOCAL.log
+	 echo -e "\nSecond scrape\n" >> logs/log-$IST_LOCAL.log
+	 cat second >> logs/log-$IST_LOCAL.log
 	 echo "================================================================" >> log-$IST_LOCAL.log
 
 	COMPARE
