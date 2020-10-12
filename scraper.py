@@ -10,9 +10,7 @@ notifs = page_raw.find_all("div", class_="announcement")
 
 for notif in notifs:
     main_elem = notif.find('h4')
-    time_elem = notif.find('span', dir='ltr')
-    if None in (main_elem, time_elem):
+    if None in (main_elem):
         continue
     print(main_elem.text.strip())
-    print(time_elem.text.strip())
     print()
