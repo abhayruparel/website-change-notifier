@@ -1,4 +1,10 @@
 #!/bin/bash
+#paratmeters
+TODAY=$(TZ=":Asia/Kolkata" date)
+IST_LOCAL=$(TZ=":Asia/Kolkata" date +%A_%F)
+#TG_* parameters are set via /etc/environment variable
+TG_BOT_API_KEY=$TG_BOT_API_KEY 
+TG_CHAT_ID=$TG_CHAT_ID 
 sendLogToTg() {
 	CURL_OPTIONS="-s --form document=@log-$IST_LOCAL.log --form caption=<- --form-string chat_id=$TG_CHAT_ID https://api.telegram.org/bot${TG_BOT_API_KEY}/sendDocument"
 	
