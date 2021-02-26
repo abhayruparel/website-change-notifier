@@ -16,6 +16,12 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2.3.4
 
+      - name: set environment variables
+        uses: actions/checkout@v2.3.4
+        env: |
+          id: ${{ secrets.ID }}
+          pass: ${{ secrets.pass }}
+
       - name: Setup Python Environment
         uses: actions/setup-python@v2
         with:
@@ -27,7 +33,7 @@ jobs:
       - name: Run alertme script
         run: |
           bash alertme.sh
-
+          
       - name: setup git config
         run: |
           git config user.name "Abhay Ruparel"
