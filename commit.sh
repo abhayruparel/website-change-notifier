@@ -1,4 +1,4 @@
 pwd
 git add . 
-git commit -m "firstScrape: site modified"
+git commit -m "[automated commit]firstScrape: site modified"
 git push origin master
