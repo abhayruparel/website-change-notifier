@@ -19,7 +19,7 @@ COMPARE()
 	then
 		echo "change detected."
 		diff secondScrape firstScrape > DIFF.txt
-		rm firstScrape secondScrape
+		mv secondScrape firstScrape
 		echo "Running mail script!"
 		python3 mail.py
 		rm DIFF.txt
