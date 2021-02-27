@@ -9,6 +9,7 @@ from email.mime.multipart import MIMEMultipart
 
 msg = MIMEMultipart()
 user = os.environ.get('id') #Enter sender's email address
+print(user)
 passwd = os.environ.get('pass')
 msg['Subject'] = "Alert! Site has been modified"
 msg['From'] = user
