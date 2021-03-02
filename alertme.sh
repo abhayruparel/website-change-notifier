@@ -9,7 +9,7 @@ TG_CHAT_ID=$TG_CHAT_ID
 
 SCRAPE()
 {
-	python3 scraper.py > $1
+	python3 scraper.py > "$1"
 }
 COMPARE()
 {
@@ -46,13 +46,13 @@ main()
 		SCRAPE secondScrape
 	fi
 	 # log those firstScrape and secondScrape html.
-	 echo "================================================================" >> log-$IST_LOCAL.log
-	 echo $TODAY >> logs/log-$IST_LOCAL.log
-	 echo -e "firstScrape scrape file:\n" >> logs/log-$IST_LOCAL.log
-	 cat firstScrape >> logs/log-$IST_LOCAL.log
-	 echo -e "\nsecondScrape scrape\n" >> logs/log-$IST_LOCAL.log
-	 cat secondScrape >> logs/log-$IST_LOCAL.log
-	 echo "================================================================" >> log-$IST_LOCAL.log
+	 echo "================================================================" >> log-"$IST_LOCAL".log
+	 echo "$TODAY" >> logs/log-"$IST_LOCAL".log
+	 echo -e "firstScrape scrape file:\n" >> logs/log-"$IST_LOCAL".log
+	 cat firstScrape >> logs/log-"$IST_LOCAL".log
+	 echo -e "\nsecondScrape scrape\n" >> logs/log-"$IST_LOCAL".log
+	 cat secondScrape >> logs/log-"$IST_LOCAL".log
+	 echo "================================================================" >> log-"$IST_LOCAL".log
 
 	COMPARE
 }
