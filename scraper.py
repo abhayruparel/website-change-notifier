@@ -10,7 +10,9 @@ notifs = page_raw.find_all("div", class_="announcement")
 
 for notif in notifs:
     main_elem = notif.find('h4')
-    if None in (main_elem):
+    sec_elem = notif.find('a')['href']
+    if None in (main_elem, sec_elem):
         continue
     print(main_elem.text.strip())
+    print(f"https://sites.google.com{sec_elem}")
     print()
