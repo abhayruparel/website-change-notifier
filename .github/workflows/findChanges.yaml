@@ -3,7 +3,7 @@ name: Update in html file
 on:
   push:
     branches:
-      - master
+      - production
   schedule:
     - cron:  '*/10 * * * *'
 
