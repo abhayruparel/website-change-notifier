@@ -40,4 +40,4 @@ crontab -e
 */10 * * * * bash path/to/alertme.sh
 ```
 ### Setup email "id" and password "pass" as environment variable or github secret.
-### Done.
+### Done
