@@ -5,10 +5,9 @@ on:
     branches:
       - production
   schedule:
-    - cron:  '*/10 * * * *'
+    - cron: "*/10 * * * *"
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
 
@@ -30,11 +29,7 @@ jobs:
           export pass=${{ secrets.PASS }}
           bash alertme.sh
 
-      - name: setup git config
-        run: |
-          git config user.name "Abhay Ruparel"
-          git config user.email "abhayruparel2000@gmail.com"
-
-      - name: commit changes
-        run: |
-          bash commit.sh
+      - uses: mikeal/publish-to-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_NAME: 'production'
